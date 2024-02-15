@@ -27,4 +27,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: mitjy/mysql-backup:latest
+        tags: mitjy/aws-command:latest
