@@ -1,20 +1,9 @@
-# Use Alpine Linux as the base image
-FROM alpine:latest
+FROM ubuntu:latest
 
-# Install AWS CLI and tar package
-RUN apk --no-cache add \
-    python3 \
-    py3-pip \
-    groff \
-    less \
-    mailcap \
-    tar \
-    && pip3 install --upgrade pip \
-    && pip3 install awscli --no-cache-dir
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Verify installations
-RUN aws --version \
-    && tar --version
+# Install MySQL and AWS CLI
+RUN apt-get update && \
+    apt-get install -y awscli tar && \
+    rm -rf /var/lib/apt/lists/*
 
-# Set the default command for the container
-CMD ["/bin/sh"]
